@@ -1,0 +1,121 @@
+$items = array(
+    array('http://www.abc.com/a/', 100, 120),
+    array('http://www.abc.com/b/index.php', 50, 80),
+    array('http://www.abc.com/a/index.html', 90, 100),
+    array('http://www.abc.com/a/?id=12345', 200, 33),
+    array('http://www.abc.com/c/index.html', 10, 20),
+    array('http://www.abc.com/abc/', 10, 30)
+);
+
+$map = array();
+foreach ($items as $item){
+    $urlPos = strripos($item[0],'/') + 1;
+    $key = substr($item[0],0,$urlPos);
+    if(isset($map[$key])){
+        $map[$key][1] += $item[1];
+        $map[$key][2] += $item[2];
+    }else{
+        $map[$key] = array($key,$item[1],$item[2]);
+    }
+
+}
+$map = array_values($map);
+//var_dump($map);die;
+#结束
+//第二题
+function king($n,$m){
+    for($i = 1;$i < $n + 1;$i++){
+        $arr[] = $i;
+    }
+    $i = 0;
+    while(count($arr) > 1){
+        if(($i + 1) % $m == 0){
+            unset($arr[$i]);
+        }else{
+            array_push($arr,$arr[$i]);
+            unset($arr[$i]);
+        }
+        $i++;
+    }
+    return $arr;
+}
+//var_dump(king(2,3));die;
+#结束
+//第三题。
+$commits= ['A','B','B','A','C','C','D','A','B','C','D','C','C','C','D','A','B','C','D','A'];
+$answers= ['A','A','B','A','D','C','D','A','A','C','C','D','C','D','A','B','C','D','C','D']; // 正确答案
+
+$map = array_diff_assoc($commits,$answers);
+
+//var_dump(100 - (count($map) * 5));
+#结束
+//第四题。
+if(file_exists('cache.php')){
+    $arr = include ('cache.php');
+//    var_dump($arr);
+}
+$requestStr = file_get_contents('php://input');
+$arr = explode('&',$requestStr);
+//var_dump($arr);
+$userInfo = array();
+foreach ($arr as $user){
+    $tmpArr = explode('=',$user);
+    $userInfo[$tmpArr[0]] = $tmpArr[1];
+}
+$str = '<?php return ';
+$str .= var_export($userInfo,true);
+$str .= ';';
+file_put_contents('cache.php',$str);
+#结束
+
+//
+class Obj implements Arrayaccess {
+    private $container = array();
+    public function __construct() {
+        $this->container = array(
+            "one"   => 1,
+            "two"   => 2,
+            "three" => 3,
+        );
+    }
+    public function offsetSet($offset, $value) {
+        if (is_null($offset)) {
+            $this->container[] = $value;
+        } else {
+            $this->container[$offset] = $value;
+        }
+    }
+    public function offsetExists($offset) {
+        return isset($this->container[$offset]);
+    }
+    public function offsetUnset($offset) {
+        unset($this->container[$offset]);
+    }
+    public function offsetGet($offset) {
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+    }
+}
+$obj = new Obj();
+$obj[] = 'Append 1';
+$obj["two"] = "A value";
+//var_dump($obj);
+#结束
+// 第6题
+#结束
+
+// 第7题
+class myClass{
+    public $myContent;
+    function __construct($string){
+        $this->myContent = $string;
+    }
+    public function __sleep(){
+        $this->myContent = 'this is my mimi';
+        return array('myContent');
+    }
+    public function __wakeup(){
+        $this->myContent = '1';
+    }
+}
+$content = new myClass('my china');
+//var_dump(unserialize(serialize($content)));
