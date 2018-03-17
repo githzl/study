@@ -1,3 +1,4 @@
+<?php
 $items = array(
     array('http://www.abc.com/a/', 100, 120),
     array('http://www.abc.com/b/index.php', 50, 80),
