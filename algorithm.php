@@ -117,3 +117,30 @@ function noRepetition($arr){
     return $newArr;
 }
 var_dump(noRepetition([1,2,3,4]));
+
+
+/*
+ * 阿姆斯特朗数问题 是指一个n位数 ( n≥3 )，它的每个位上的数字的n次幂之和等于它本身
+ * 假设n=3,数字为153，那么1的3次方 + 5的3次方 + 3的3次方刚好等于153，那么就符合 阿姆斯特朗数
+ * 求100-999中的阿姆斯特朗数，或者1000－9999中的阿姆斯特朗数。
+ * param $start
+ * param $end
+ * param $power
+ * return $list
+ */
+function checkArmstrongNumber($start, $end, $power){
+    if($power < 3) return die('power need ge 3');
+    $list = [];
+    for ($i = $start; $i <= $end; $i++) {
+        $count = NULL;
+        for ($j = 0; $j < $power; $j++) {
+            $count += pow(strval($i)[$j],$power); // 把自己的N次幂相加
+        }
+        if($i == $count) {
+            $list[] = $i;
+        }
+    }
+    return $list;
+}
+$list = checkArmstrongNumber(1000,9999,4); // array(1634, 8208, 9474) or checkArmstrongNumber(100,999,3);
+
