@@ -144,3 +144,14 @@ function checkArmstrongNumber($start, $end, $power){
 }
 $list = checkArmstrongNumber(1000,9999,4); // array(1634, 8208, 9474) or checkArmstrongNumber(100,999,3);
 
+
+/*
+ * 实现一个数的垒加自身，N次垒加后的值。(2,2)=2+2+4=8，(3,2)=3+3+6
+ * param $number
+ * param $count
+ * return $value
+ */
+function baseAdd($number, $count){
+    return $number << $count; // 位运算
+}
+echo baseAdd(3,2);
