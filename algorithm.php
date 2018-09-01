@@ -176,7 +176,7 @@ $arr = [
 ];
 function fiveChess($arr){
     foreach ($arr as $rowkey => $row) {
-    foreach ($row as $colkey => $col ) {
+    foreach ($row as $colkey => $col) {
         // 1号玩家
         if($arr[$rowkey][$colkey] == 1 && $arr[$rowkey][$colkey+1] == 1 && $arr[$rowkey][$colkey+2] == 1 && $arr[$rowkey][$colkey+3] == 1 && $arr[$rowkey][$colkey+4] == 1) {
             die('1号胜利');
@@ -194,6 +194,6 @@ function fiveChess($arr){
         
         die('未分胜负');
     }
-}
+    }
 }
 
