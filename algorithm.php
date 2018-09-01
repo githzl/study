@@ -155,3 +155,45 @@ function baseAdd($number, $count){
     return $number << $count; // 位运算
 }
 echo baseAdd(3,2);
+
+
+/*
+ * PHP数组实现五子棋（10x10大小）
+ * 抽象成10X10的方格,毎一个点默认为NULL,1号玩家下棋后把位置设置1,2号玩家下棋后把位置设置2,下棋结束后判断是否有玩家胜利,否则继续轮流下。
+ * param $arr
+ */
+$arr = [
+    1 =>  [1 => 1,   2 => null,3 => 1,   4 => 1,   5 => null,6 => 1,   7 => null,8 => 1,   9 => 1,   10 => 1   ],
+    2 =>  [1 => 1,   2 => 1,   3 => null,4 => 1,   5 => 1,   6 => 1,   7 => null,8 => null,9 => null,10 => null],
+    3 =>  [1 => null,2 => null,3 => null,4 => null,5 => null,6 => null,7 => null,8 => null,9 => null,10 => null],
+    4 =>  [1 => 1,   2 => null,3 => null,4 => 1,   5 => 1,   6 => null,7 => null,8 => null,9 => null,10 => null],
+    5 =>  [1 => 1,   2 => null,3 => null,4 => null,5 => 1,   6 => null,7 => null,8 => null,9 => null,10 => null],
+    6 =>  [1 => null,2 => null,3 => null,4 => null,5 => null,6 => null,7 => null,8 => null,9 => null,10 => 1   ],
+    7 =>  [1 => null,2 => null,3 => null,4 => null,5 => 1,   6 => null,7 => null,8 => null,9 => 1,   10 => null],
+    8 =>  [1 => null,2 => null,3 => null,4 => null,5 => 1,   6 => null,7 => null,8 => 1,   9 => null,10 => 1   ],
+    9 =>  [1 => null,2 => null,3 => null,4 => null,5 => null,6 => null,7 => 1,   8 => null,9 => null,10 => 1   ],
+    10 => [1 => null,2 => null,3 => null,4 => null,5 => null,6 => 1,   7 => null,8 => null,9 => null,10 => null],
+];
+function fiveChess($arr){
+    foreach ($arr as $rowkey => $row) {
+    foreach ($row as $colkey => $col ) {
+        // 1号玩家
+        if($arr[$rowkey][$colkey] == 1 && $arr[$rowkey][$colkey+1] == 1 && $arr[$rowkey][$colkey+2] == 1 && $arr[$rowkey][$colkey+3] == 1 && $arr[$rowkey][$colkey+4] == 1) {
+            die('1号胜利');
+        }
+        if($arr[$rowkey][$colkey] == 1 && $arr[$rowkey+1][$colkey] == 1 && $arr[$rowkey+2][$colkey] == 1 && $arr[$rowkey+3][$colkey] == 1 && $arr[$rowkey+4][$colkey] == 1) {
+            die('1号胜利');
+        }
+        if($arr[$rowkey][$colkey] == 1 && $arr[$rowkey+1][$colkey+1] == 1 && $arr[$rowkey+2][$colkey+2] == 1 && $arr[$rowkey+3][$colkey+3] == 1 && $arr[$rowkey+4][$colkey+4] == 1) {
+            die('1号胜利');
+        }
+        if($arr[$rowkey][$colkey] == 1 && $arr[$rowkey+1][$colkey-1] == 1 && $arr[$rowkey+2][$colkey-2] == 1 && $arr[$rowkey+3][$colkey-3] == 1 && $arr[$rowkey+4][$colkey-4] == 1) {
+            die('1号胜利');
+        }
+        // 2号玩家....
+        
+        die('未分胜负');
+    }
+}
+}
+
