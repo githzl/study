@@ -23,4 +23,3 @@
     echo "<a href='http://www.hezhongli.cn/action.php?g=".$grouparr[$i]."'>".$grouparr[$i]."群</a><br><br>";
 	}
 	echo "</center>";
-	echo "success!";
